@@ -22,6 +22,7 @@ brew install ssh-copy-id
 brew install tree
 
 # Work related items
+brew install ansible
 brew install cntlm
 brew install gdbm
 brew install go
@@ -35,6 +36,7 @@ brew install openssl
 brew install openssl@1.1
 brew install perl
 brew install python
+brew install python@2
 brew install readline
 brew install ruby
 brew install socat
@@ -42,6 +44,7 @@ brew install sqlite
 brew install terraform
 brew install tmux
 brew install utf8proc
+brew install xz
 
 # Work apps
 brew cask install atom
