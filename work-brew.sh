@@ -10,8 +10,8 @@ brew upgrade
 
 # Install more recent versions of some macOS tools.
 brew install vim --with-override-system-vi
-brew install grep
-brew install openssh
+#brew install grep
+#brew install openssh
 
 # Install some CTF tools; see https://github.com/ctfs/write-ups.
 brew install nmap
@@ -23,6 +23,7 @@ brew install tree
 
 # Work related items
 brew install ansible
+brew install awscli
 brew install cntlm
 brew install gdbm
 brew install go
@@ -30,6 +31,7 @@ brew install jq
 brew install kompose
 brew install libevent
 brew install libyaml
+brew install mysql@5.7
 brew install oniguruma
 brew install openshift-cli
 brew install openssl
@@ -39,6 +41,8 @@ brew install python
 brew install python@2
 brew install readline
 brew install ruby
+brew install saml2aws
+brew install screenfetch
 brew install socat
 brew install sqlite
 brew install terraform
