@@ -8,6 +8,10 @@ brew update
 # Upgrade any already-installed formulae.
 brew upgrade
 
+# Add 3rd-party taps
+brew tap aws/tap
+brew tap versent/taps
+
 # Install more recent versions of some macOS tools.
 brew install vim --with-override-system-vi
 #brew install grep
@@ -23,6 +27,7 @@ brew install tree
 
 # Work related items
 brew install ansible
+brew install aws-sam-cli
 brew install awscli
 brew install cntlm
 brew install gdbm
@@ -60,7 +65,7 @@ brew cask install microsoft-remote-desktop-beta
 brew cask install spectacle
 brew cask install vagrant
 #brew cask install virtualbox
-#brew cask install visual-studio-code
+brew cask install visual-studio-code
 brew cask install visualvm
 
 # Remove outdated versions from the cellar.
