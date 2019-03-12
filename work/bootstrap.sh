@@ -49,10 +49,9 @@ else
 fi
 
 # zsh shell change
-read -p "Change shell to zsh and install OhMyZsh? (y/n) " -n 1;
+read -p "Install OhMyZsh (changes default shell to zsh)? (y/n) " -n 1;
 echo "";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-	chsh -s /bin/zsh
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi;
 
