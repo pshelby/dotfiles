@@ -94,7 +94,9 @@ brew install tree
 #brew install zopfli
 
 # pshelby - Install other useful binaries.
+brew install awscli
 brew install jq
+brew install stelligent/tap/mu-cli
 brew install tmux
 brew install zsh
 brew install zsh-completions
