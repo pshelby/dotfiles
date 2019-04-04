@@ -102,9 +102,15 @@ brew install zsh
 brew install zsh-completions
 
 # pshelby - Install useful applications
+brew cask install 1password
+brew cask install aws-vault
 brew cask install encryptme
+brew cask install font-meslo-for-powerline
 brew cask install istat-menus
 brew cask install iterm2
+brew cask install muzzle
+brew cask install postman
+brew cask install slack
 brew cask install spectacle
 brew cask install visual-studio-code
 
