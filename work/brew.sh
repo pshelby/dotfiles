@@ -95,6 +95,7 @@ brew install tree
 
 # pshelby - Install other useful binaries.
 brew install awscli
+brew install awslogs
 brew install jq
 brew install stelligent/tap/mu-cli
 brew install tmux
