@@ -105,6 +105,7 @@ brew install zsh-completions
 # pshelby - Install useful applications
 brew cask install 1password
 brew cask install aws-vault
+brew cask install docker
 brew cask install encryptme
 brew cask install font-meslo-for-powerline
 brew cask install istat-menus

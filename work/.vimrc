@@ -31,9 +31,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
-"Plugin 'edkolev/promptline.vim'
 Plugin 'mhinz/vim-signify'
-"Plugin 'file:///Users/pshelby/Documents/git_repos/vim-puppet'
+Plugin 'speshak/vim-cfn'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -92,6 +91,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_cloudformation_checkers = ['cfn_lint']
 let g:syntastic_enable_perl_checker = 1
 let g:syntastic_enable_puppet_checker = 1
 let g:syntastic_enable_python_checker = 1
@@ -104,11 +104,8 @@ let g:syntastic_yaml_checkers = ['yamllint']
 let g:syntastic_shell = 'ksh'
 
 " Syntastic options - default file types
-autocmd BufRead,BufNewFile ~/Documents/git_repos/etdash/scripts/TABLES/* set filetype=perl
-autocmd BufRead,BufNewFile ~/Documents/git_repos/nagiosplug/libcfg/ad.nagios.cfg/service/* set filetype=perl
-autocmd BufRead,BufNewFile ~/Documents/git_repos/nagiosplug/libcfg/ad.nagios.cfg/xml/* set filetype=perl
-autocmd BufRead,BufNewFile ~/Documents/git_repos/nagiosplug/libexec/wpm.cfg set filetype=perl
 autocmd BufRead,BufNewFile *.pp set filetype=puppet
+autocmd BufRead,BufNewFile ~/Documents/*.{yaml,yml} set filetype=yaml.cloudformation
 
 " Promptline settings
 "" sections (a, b, c, x, y, z, warn) are optional
