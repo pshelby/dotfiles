@@ -97,6 +97,7 @@ brew install tree
 brew install awscli
 brew install awslogs
 brew install jq
+brew install ncurses
 brew install stelligent/tap/mu-cli
 brew install tmux
 brew install zsh
@@ -108,6 +109,7 @@ brew cask install aws-vault
 brew cask install docker
 brew cask install encryptme
 brew cask install font-meslo-for-powerline
+brew cask install intel-power-gadget
 brew cask install istat-menus
 brew cask install iterm2
 brew cask install muzzle
@@ -115,6 +117,7 @@ brew cask install postman
 brew cask install slack
 brew cask install spectacle
 brew cask install visual-studio-code
+brew cask install vmware-horizon-client
 
 # Remove outdated versions from the cellar.
 brew cleanup
