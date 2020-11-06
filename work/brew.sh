@@ -117,8 +117,8 @@ brew cask install istat-menus
 brew cask install iterm2
 brew cask install muzzle
 brew cask install postman
+brew cask install rectangle
 brew cask install slack
-brew cask install spectacle
 brew cask install visual-studio-code
 brew cask install vmware-horizon-client
 brew cask install wireshark
