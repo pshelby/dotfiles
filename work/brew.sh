@@ -94,11 +94,14 @@ brew install tree
 #brew install zopfli
 
 # pshelby - Install other useful binaries.
+brew install aws-cdk
 brew install awscli
 brew install awslogs
+brew install dive
 brew install jq
 brew install ncurses
-brew install stelligent/tap/mu-cli
+brew install nektos/act
+brew install terraform
 brew install tmux
 brew install zsh
 brew install zsh-completions
@@ -114,10 +117,11 @@ brew cask install istat-menus
 brew cask install iterm2
 brew cask install muzzle
 brew cask install postman
+brew cask install rectangle
 brew cask install slack
-brew cask install spectacle
 brew cask install visual-studio-code
 brew cask install vmware-horizon-client
+brew cask install wireshark
 
 # Remove outdated versions from the cellar.
 brew cleanup

@@ -117,7 +117,7 @@ brew cask install iterm2
 brew cask install muzzle
 brew cask install ngrok
 brew cask install postman
-brew cask install spectacle
+brew cask install rectangle
 brew cask install visual-studio-code
 
 # Remove outdated versions from the cellar.
