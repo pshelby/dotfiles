@@ -145,24 +145,5 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-
-function aws-work {
-	MFA=arn:aws:iam::324320755747:mfa/patrick.shelby.labs
-	REGION=us-west-2
-	TEMP_FILE=~/Desktop/temp-aws-creds.json
-	TOKEN_CODE=$1
-
-	if [[ $TOKEN_CODE == 'unset' ]]; then
-		unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN AWS_DEFAULT_REGION &&
-			rm $TEMP_FILE
-	else
-		aws --profile work sts get-session-token --serial-number $MFA --token-code $TOKEN_CODE > $TEMP_FILE &&
-			export AWS_ACCESS_KEY_ID=$(jq -r '.Credentials.AccessKeyId' $TEMP_FILE) &&
-			export AWS_SECRET_ACCESS_KEY=$(jq -r '.Credentials.SecretAccessKey' $TEMP_FILE) &&
-			export AWS_SESSION_TOKEN=$(jq -r '.Credentials.SessionToken' $TEMP_FILE) &&
-			export AWS_DEFAULT_REGION=$REGION
-	fi
-}
-
 #export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 #source /usr/local/bin/virtualenvwrapper.sh
