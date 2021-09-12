@@ -12,7 +12,7 @@ function copy_files() {
 }
 
 function install_homebrew_formulae() {
-	read -p "Do you want to install all Homebrew formulae in brew.sh? (y/n) " -n 1;
+	read -p "Do you want to install all Homebrew formulae in brew.sh? [y|N] " -n 1;
 	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		./brew.sh
@@ -29,7 +29,7 @@ git pull origin master;
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
 	copy_files;
 else
-	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
+	read -p "This may overwrite existing files in your home directory. Are you sure? [y|N] " -n 1;
 	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		copy_files;
@@ -38,7 +38,7 @@ fi;
 
 # Homebrew install
 if [ ! $(which brew) ]; then
-	read -p "Cannot find Homebrew.  Do you want to install it? (y/n) " -n 1;
+	read -p "Cannot find Homebrew.  Do you want to install it? [y|N] " -n 1;
 	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)";
@@ -49,11 +49,19 @@ else
 fi
 
 # zsh shell change
-read -p "Install OhMyZsh (changes default shell to zsh)? (y/n) " -n 1;
+read -p "Install OhMyZsh (changes default shell to zsh)? [y|N] " -n 1;
 echo "";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi;
 
+# zsh plugins
+read -p "Install custom ZSH plugins? [y|N] " -n 1;
+echo "";
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+	shared/zsh-plugins.sh
+fi;
+
 # Cleanup variables
 unset copy_files;
+unset install_homerew_formulae;
