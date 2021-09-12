@@ -8,10 +8,59 @@ export ZSH="/Users/pshelby/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
-ZSH_THEME="ys"
-ZSH_THEME="mortalscumbag"
+ZSH_THEME="robbyrussell"
 ZSH_THEME="random"
+ZSH_THEME="spaceship"
+
+# Spaceship theme customization
+SPACESHIP_PROMPT_ORDER=(
+  #time          # Time stamps section
+  user          # Username section
+  dir           # Current directory section
+  host          # Hostname section
+  git           # Git section (git_branch + git_status)
+  hg            # Mercurial section (hg_branch  + hg_status)
+  package       # Package version
+  node          # Node.js section
+  ruby          # Ruby section
+  elixir        # Elixir section
+  xcode         # Xcode section
+  swift         # Swift section
+  golang        # Go section
+  php           # PHP section
+  rust          # Rust section
+  haskell       # Haskell Stack section
+  julia         # Julia section
+  docker        # Docker section
+  aws           # Amazon Web Services section
+  venv          # virtualenv section
+  conda         # conda virtualenv section
+  pyenv         # Pyenv section
+  dotnet        # .NET section
+  ember         # Ember.js section
+  kubectl       # Kubectl context section
+  terraform     # Terraform workspace section
+  #exec_time     # Execution time
+  line_sep      # Line break
+  battery       # Battery level and status
+  #vi_mode       # Vi-mode indicator
+  #jobs          # Background jobs indicator
+  exit_code     # Exit code section
+  char          # Prompt character
+)
+SPACESHIP_RPROMPT_ORDER=(
+  time          # Time stamps section
+  exec_time     # Execution time
+  vi_mode       # Vi-mode indicator
+  jobs          # Background jobs indicator
+)
+SPACESHIP_PROMPT_ADD_NEWLINE=false   # Adds a newline character before each prompt line
+SPACESHIP_PROMPT_SEPARATE_LINE=false # Make the prompt span across two lines
+SPACESHIP_TIME_SHOW=true             # Show time (set to true for enabling)
+SPACESHIP_EXEC_TIME_ELAPSED=0        # The minimum number of seconds for showing execution time section
+SPACESHIP_EXIT_CODE_SHOW=true        # Show exit code of last command
+SPACESHIP_KUBECTL_SHOW=true          # Show time (set to true for enabling)
+SPACESHIP_KUBECTL_VERSION_SHOW=false # Do not show the k8s version
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -31,8 +80,14 @@ ZSH_THEME="random"
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
 
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -70,7 +125,7 @@ ZSH_TMUX_AUTOSTART=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux vi-mode)
+plugins=(git tmux vi-mode zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -102,15 +157,24 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias aws-pslabs="aws-vault exec patrick-shelby-labs --"
+alias grpo="git remote prune origin"
+alias tf="terraform"
+alias tfa="terraform apply"
+alias tfi="terraform init"
+alias tfp="terraform plan"
 
-# Update PATH to make python3 the default python
-export PATH="/usr/local/opt/python/libexec/bin:/usr/local/sbin:$PATH"
-
-# Source virtualenvwrapper setup script
-source /usr/local/bin/virtualenvwrapper.sh
+# Functions
 
 # Convert JSON to YAML
 json2yaml() {
-	python -c 'import sys, yaml, json; yaml.safe_dump(json.load(sys.stdin), sys.stdout, default_flow_style=False)' < $1 > $2
+  python -c 'import sys, yaml, json; yaml.safe_dump(json.load(sys.stdin), sys.stdout, default_flow_style=False)' < $1 > $2
 }
+
+random_pswd() {
+  RANDOM_PSWD=$(head /dev/urandom | LC_ALL=C tr -d -c A-Za-z0-9 | head -c24)
+  echo $RANDOM_PSWD
+  SECRET_KEY=$(curl -s -d "secret=${RANDOM_PSWD}" https://onetimesecret.com/api/v1/share | jq -r '.secret_key')
+  echo "https://onetimesecret.com/secret/${SECRET_KEY}"
+}
+
+# Current company-specific items can be added below
