@@ -85,43 +85,68 @@ brew install vim
 #brew install lynx
 #brew install p7zip
 #brew install pigz
+brew install pstree
 #brew install pv
 #brew install rename
 #brew install rlwrap
-brew install ssh-copy-id
+#brew install ssh-copy-id
 brew install tree
 #brew install vbindiff
 #brew install zopfli
 
 # pshelby - Install other useful binaries.
-brew install aws-cdk
+brew install argocd
+#brew install aws-cdk
+brew install aws-iam-authenticator
 brew install awscli
 brew install awslogs
+brew install certbot
+brew install cruft
 brew install dive
+brew install drone-cli
+brew install helm
 brew install jq
+brew install kubernetes-cli
+brew install kustomize
 brew install ncurses
 brew install nektos/act
+brew install podman
+brew install poetry
+brew install pre-commit
+brew install python@3.8
+brew install python@3.9
+brew install python@3.10
+brew install rust
+brew install starship
 brew install terraform
 brew install tmux
+brew install tox
+brew install vault
 brew install zsh
 brew install zsh-completions
 
 # pshelby - Install useful applications
-brew cask install 1password
-brew cask install aws-vault
-brew cask install docker
-brew cask install encryptme
-brew cask install font-meslo-for-powerline
-brew cask install intel-power-gadget
-brew cask install istat-menus
-brew cask install iterm2
-brew cask install muzzle
-brew cask install postman
-brew cask install rectangle
-brew cask install slack
-brew cask install visual-studio-code
-brew cask install vmware-horizon-client
-brew cask install wireshark
+brew install --cask 1password
+brew install --cask 1password-cli
+brew install --cask aws-vault
+#brew install --cask datagrip
+brew install --cask docker
+brew install --cask fantastical
+brew install --cask font-meslo-for-powerline
+#brew install --cask intel-power-gadget
+brew install --cask istat-menus
+brew install --cask iterm2
+brew install --cask lens
+brew install --cask muzzle
+brew install --cask nordvpn
+brew install --cask obs
+brew install --cask obsidian
+brew install --cask postman
+brew install --cask rectangle
+brew install --cask slack
+brew install --cask visual-studio-code
+#brew install --cask vmware-horizon-client
+brew install --cask wireshark
 
 # Remove outdated versions from the cellar.
 brew cleanup

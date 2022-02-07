@@ -8,9 +8,9 @@ export ZSH="/Users/pshelby/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
-ZSH_THEME="random"
-ZSH_THEME="spaceship"
+# ZSH_THEME="robbyrussell"
+# ZSH_THEME="random"
+# ZSH_THEME="spaceship"
 
 # Spaceship theme customization
 SPACESHIP_PROMPT_ORDER=(
@@ -164,17 +164,37 @@ alias tfi="terraform init"
 alias tfp="terraform plan"
 
 # Functions
+brew-recursive-uninstall() {
+  FORMULAE_TO_DELETE=$1
+
+  brew leaves > brew-leaves-before.txt
+
+  while [[ -n $FORMULAE_TO_DELETE ]]; do
+    brew uninstall $(echo $FORMULAE_TO_DELETE | xargs);
+    brew leaves > brew-leaves-after.txt;
+    FORMULAE_TO_DELETE=$(comm -13 <(sort -u brew-leaves-before.txt) <(sort -u brew-leaves-after.txt) | tr '\n' ' ');
+    mv brew-leaves-after.txt brew-leaves-before.txt;
+  done
+
+  rm brew-leaves-*.txt
+  unset FORMULAE_TO_DELETE
+}
 
 # Convert JSON to YAML
 json2yaml() {
   python -c 'import sys, yaml, json; yaml.safe_dump(json.load(sys.stdin), sys.stdout, default_flow_style=False)' < $1 > $2
 }
 
-random_pswd() {
-  RANDOM_PSWD=$(head /dev/urandom | LC_ALL=C tr -d -c A-Za-z0-9 | head -c24)
+random-pswd() {
+  LENGTH="${1:-24}"
+  RANDOM_PSWD=$(head /dev/urandom | LC_ALL=C tr -d -c A-Za-z0-9 | head -c$LENGTH)
   echo $RANDOM_PSWD
   SECRET_KEY=$(curl -s -d "secret=${RANDOM_PSWD}" https://onetimesecret.com/api/v1/share | jq -r '.secret_key')
   echo "https://onetimesecret.com/secret/${SECRET_KEY}"
 }
+
+# Starship prompt
+# Configuration: https://starship.rs/config/
+eval "$(starship init zsh)"
 
 # Current company-specific items can be added below
