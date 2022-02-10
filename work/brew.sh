@@ -108,6 +108,7 @@ brew install helm
 brew install jq
 brew install kubernetes-cli
 brew install kustomize
+brew install magic-wormhole
 brew install ncurses
 brew install nektos/act
 brew install podman
