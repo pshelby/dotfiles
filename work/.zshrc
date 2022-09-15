@@ -1,6 +1,10 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# Homebrew
+export HOMEBREW_PREFIX=$(brew --prefix)
+export PATH=$HOMEBREW_PREFIX/opt/python/libexec/bin:$PATH
+
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/pshelby/.oh-my-zsh"
 
@@ -125,7 +129,7 @@ ZSH_TMUX_AUTOSTART=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux vi-mode zsh-syntax-highlighting)
+plugins=(autoswitch_virtualenv git vi-mode zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
