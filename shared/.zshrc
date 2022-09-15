@@ -8,8 +8,8 @@ export ZSH="/Users/pshelby/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
-ZSH_THEME="random"
+# ZSH_THEME="robbyrussell"
+# ZSH_THEME="random"
 ZSH_THEME="spaceship"
 
 # Spaceship theme customization
@@ -112,7 +112,7 @@ SPACESHIP_EXIT_CODE_SHOW=true        # Show exit code of last command
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git pipenv vi-mode vundle)
+plugins=(git vi-mode vundle zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -145,5 +145,4 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-#export PATH="/usr/local/opt/python/libexec/bin:$PATH"
-#source /usr/local/bin/virtualenvwrapper.sh
+#eval "$(starship init zsh)"

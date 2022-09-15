@@ -183,20 +183,13 @@ let g:syntastic_always_populate_loc_list=1
 let g:syntastic_auto_loc_list=1
 let g:syntastic_check_on_open=1
 let g:syntastic_check_on_wq=0
-let g:syntastic_enable_perl_checker = 1
 let g:syntastic_enable_puppet_checker = 1
-let g:syntastic_perl_checkers = ['perl']
 let g:syntastic_puppet_checkers=['puppetlint']
 let g:syntastic_python_checkers = ['python', 'pylint']
-let g:syntastic_xml_checkers = ['xmllint']
 let g:syntastic_yaml_checkers = ['yamllint']
-let g:syntastic_shell = 'ksh'
+let g:syntastic_shell = 'zsh'
 
 " Syntastic options - default file types
-autocmd BufRead,BufNewFile ~/Documents/git_repos/etdash/scripts/TABLES/* set filetype=perl
-autocmd BufRead,BufNewFile ~/Documents/git_repos/nagiosplug/libcfg/ad.nagios.cfg/service/* set filetype=perl
-autocmd BufRead,BufNewFile ~/Documents/git_repos/nagiosplug/libcfg/ad.nagios.cfg/xml/* set filetype=perl
-autocmd BufRead,BufNewFile ~/Documents/git_repos/nagiosplug/libexec/wpm.cfg set filetype=perl
 autocmd BufRead,BufNewFile *.pp set filetype=puppet
 
 " Promptline settings
