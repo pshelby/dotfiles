@@ -94,31 +94,38 @@ brew install tree
 #brew install zopfli
 
 # pshelby - Install other useful binaries.
-brew install go
+brew install awscli
 brew install jq
-brew install ncurses
-brew install python3
-brew install python@2
+brew install poetry
+brew install python@3.10
+brew install python@3.8
+brew install python@3.9
+brew install rust
 brew install sqlite
+brew install starship
 brew install tbb
 brew install terraform
+brew install tmux
+brew install zellij
 brew install zsh
 brew install zsh-completions
 
 # pshelby - Install useful applications
-brew cask install 1password
-brew cask install balenaetcher
-brew cask install docker
-brew cask install encryptme
-brew cask install fritzing
-brew cask install intel-power-gadget
-brew cask install istat-menus
-brew cask install iterm2
-brew cask install muzzle
-brew cask install ngrok
-brew cask install postman
-brew cask install rectangle
-brew cask install visual-studio-code
+brew install --cask 1password
+brew install --cask balenaetcher
+brew install --cask docker
+brew install --cask fritzing
+brew install --cask horos
+brew install --cask intel-power-gadget
+brew install --cask istat-menus
+brew install --cask iterm2
+brew install --cask muzzle
+brew install --cask ngrok
+brew install --cask nordvpn
+brew install --cask obsidian
+brew install --cask postman
+brew install --cask rectangle
+brew install --cask visual-studio-code
 
 # Remove outdated versions from the cellar.
 brew cleanup
