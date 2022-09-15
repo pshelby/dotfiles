@@ -103,9 +103,10 @@ brew install awslogs
 brew install certbot
 brew install cruft
 brew install dive
-brew install drone-cli
 brew install helm
 brew install jq
+brew install k9s
+brew install kind
 brew install kubernetes-cli
 brew install kustomize
 brew install magic-wormhole
@@ -113,6 +114,7 @@ brew install ncurses
 brew install nektos/act
 brew install podman
 brew install poetry
+brew install postgresql@12
 brew install pre-commit
 brew install python@3.8
 brew install python@3.9
@@ -130,6 +132,7 @@ brew install zsh-completions
 brew install --cask 1password
 brew install --cask 1password-cli
 brew install --cask aws-vault
+brew install --cask brave-browser
 #brew install --cask datagrip
 brew install --cask docker
 brew install --cask fantastical
@@ -137,13 +140,13 @@ brew install --cask font-meslo-for-powerline
 #brew install --cask intel-power-gadget
 brew install --cask istat-menus
 brew install --cask iterm2
-brew install --cask lens
 brew install --cask muzzle
 brew install --cask nordvpn
 brew install --cask obs
 brew install --cask obsidian
 brew install --cask postman
 brew install --cask rectangle
+brew install --cask shottr
 brew install --cask slack
 brew install --cask visual-studio-code
 #brew install --cask vmware-horizon-client
