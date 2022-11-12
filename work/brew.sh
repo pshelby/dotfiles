@@ -112,6 +112,7 @@ brew install kustomize
 brew install magic-wormhole
 brew install ncurses
 brew install nektos/act
+brew install onefetch
 brew install podman
 brew install poetry
 brew install postgresql@12

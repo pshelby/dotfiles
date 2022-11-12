@@ -23,7 +23,7 @@ function install_homebrew_formulae() {
 cd "$(dirname "${BASH_SOURCE}")";
 
 # Pull latest changes
-git pull origin master;
+git pull origin main;
 
 # Copy files into home dir
 if [ "$1" == "--force" -o "$1" == "-f" ]; then

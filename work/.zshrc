@@ -129,7 +129,7 @@ ZSH_TMUX_AUTOSTART=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(autoswitch_virtualenv git vi-mode zsh-syntax-highlighting)
+plugins=(git vi-mode tmux zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -162,10 +162,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias grpo="git remote prune origin"
-alias tf="terraform"
-alias tfa="terraform apply"
-alias tfi="terraform init"
-alias tfp="terraform plan"
 
 # Functions
 brew-recursive-uninstall() {
@@ -193,8 +189,7 @@ random-pswd() {
   LENGTH="${1:-24}"
   RANDOM_PSWD=$(head /dev/urandom | LC_ALL=C tr -d -c A-Za-z0-9 | head -c$LENGTH)
   echo $RANDOM_PSWD
-  SECRET_KEY=$(curl -s -d "secret=${RANDOM_PSWD}" https://onetimesecret.com/api/v1/share | jq -r '.secret_key')
-  echo "https://onetimesecret.com/secret/${SECRET_KEY}"
+  wormhole send --text $RANDOM_PSWD
 }
 
 # Starship prompt
