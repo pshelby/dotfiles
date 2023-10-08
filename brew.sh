@@ -42,11 +42,9 @@ brew install --cask aws-vault
 brew install --cask balenaetcher
 brew install --cask docker
 brew install --cask fantastical
-brew install --cask fritzing
 brew install --cask horos
 brew install --cask istat-menus
 brew install --cask iterm2
-brew install --cask muzzle
 brew install --cask ngrok
 brew install --cask nordvpn
 brew install --cask obs
@@ -69,7 +67,7 @@ brew install kustomize
 brew install ncurses
 brew install onefetch
 brew install podman
-brew install postgresql@12
+brew install postgresql@14
 brew install pre-commit
 brew install vault
 
