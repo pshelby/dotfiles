@@ -107,6 +107,9 @@ truncation_length = 4
 [fill]
 symbol = " "
 
+[gcloud]
+disabled = true
+
 [git_branch]
 # symbol = "🌱 "
 

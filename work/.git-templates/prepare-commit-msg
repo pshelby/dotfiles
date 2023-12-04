@@ -4,7 +4,7 @@
 
 # Include any branches for which you wish to disable this script
 if [ -z "$BRANCHES_TO_SKIP" ]; then
-  BRANCHES_TO_SKIP=(master develop staging test)
+  BRANCHES_TO_SKIP=(develop main master staging test)
 fi
 
 # Get the current branch name and check if it is excluded
@@ -17,5 +17,5 @@ TRIMMED=$(echo $BRANCH_NAME | sed -e 's:^\([^-]*-[^-]*\)/.*:\1:' -e \
 
 # If it isn't excluded, preprend the trimmed branch identifier to the given message
 if [ -n "$BRANCH_NAME" ] &&  ! [[ $BRANCH_EXCLUDED -eq 1 ]]; then
-  sed -i.bak -e "1s/^/$TRIMMED \/ /" $1
+  sed -i"" -e "1s/^/$TRIMMED \/ /" $1
 fi
