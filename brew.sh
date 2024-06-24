@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # Install command-line tools using Homebrew
 
@@ -7,12 +7,6 @@ brew update
 
 # Upgrade any existing formulae
 brew upgrade
-
-# Updated base tools
-brew install vim
-
-# Fonts
-brew install --cask font-meslo-for-powerline
 
 # Networking/Sec tools
 brew install nmap
@@ -54,7 +48,6 @@ brew install --cask aws-vault
 brew install --cask balenaetcher
 brew install --cask docker
 brew install --cask fantastical
-brew install --cask font-meslo-for-powerline
 brew install --cask font-meslo-lg-nerd-font
 brew install --cask horos
 brew install --cask istat-menus

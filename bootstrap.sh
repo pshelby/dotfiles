@@ -1,18 +1,14 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 function copy_files() {
-	rsync --exclude ".git/" \
-		--exclude ".DS_Store" \
-		--exclude ".osx" \
-		--exclude "bootstrap.sh" \
-		--exclude "README.md" \
-		--exclude "LICENSE-MIT.txt" \
-		-avh --no-perms . ~;
-	source ~/.bash_profile;
+	rsync -ahnv --no-perms \
+    --exclude-from "copy-excludes.txt" \
+		. ~;
+	source ~/.zshrc;
 }
 
 function install_homebrew_formulae() {
-	read -p "Do you want to install all Homebrew formulae in brew.sh? [y|N] " -n 1;
+	read -k 1 \?"Do you want to install all Homebrew formulae in brew.sh? [y|N] " ;
 	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		./brew.sh
@@ -20,16 +16,17 @@ function install_homebrew_formulae() {
 }
 
 # Move to root git dir for this repo
-cd "$(dirname "${BASH_SOURCE}")";
+SCRIPT_PATH="${0:A:h}"
+cd $SCRIPT_PATH
 
 # Pull latest changes
 git pull origin main;
 
 # Copy files into home dir
-if [ "$1" == "--force" -o "$1" == "-f" ]; then
+if [ "$1" = "--force" -o "$1" = "-f" ]; then
 	copy_files;
 else
-	read -p "This may overwrite existing files in your home directory. Are you sure? [y|N] " -n 1;
+	read -k 1 \?"This may overwrite existing files in your home directory. Are you sure? [y|N] " ;
 	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		copy_files;
@@ -38,7 +35,7 @@ fi;
 
 # Homebrew install
 if [ ! $(which brew) ]; then
-	read -p "Cannot find Homebrew.  Do you want to install it? [y|N] " -n 1;
+	read -k 1 \?"Cannot find Homebrew.  Do you want to install it? [y|N] " ;
 	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
 		/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)";
@@ -49,14 +46,14 @@ else
 fi
 
 # zsh shell change
-read -p "Install OhMyZsh (changes default shell to zsh)? [y|N] " -n 1;
+read -k 1 \?"Install OhMyZsh (changes default shell to zsh)? [y|N] " ;
 echo "";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi;
 
 # zsh plugins
-read -p "Install custom ZSH plugins? [y|N] " -n 1;
+read -k 1 \?"Install custom ZSH plugins? [y|N] ";
 echo "";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
 	shared/zsh-plugins.sh

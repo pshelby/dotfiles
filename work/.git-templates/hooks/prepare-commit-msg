@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 # https://medium.com/@nicklee1/prepending-your-git-commit-messages-with-user-story-ids-3bfea00eab5a
 
@@ -16,6 +16,6 @@ TRIMMED=$(echo $BRANCH_NAME | sed -e 's:^\([^-]*-[^-]*\)/.*:\1:' -e \
     'y/abcdefghijklmnopqrstuvwxyz/ABCDEFGHIJKLMNOPQRSTUVWXYZ/')
 
 # If it isn't excluded, preprend the trimmed branch identifier to the given message
-if [ -n "$BRANCH_NAME" ] &&  ! [[ $BRANCH_EXCLUDED -eq 1 ]]; then
-  sed -i"" -e "1s/^/$TRIMMED \/ /" $1
+if [ -n "$BRANCH_NAME" ] && [[ $BRANCH_NAME =~ ^[A-Z]{2,}-[0-9]\+/.* ]] && ! [[ $BRANCH_EXCLUDED -eq 1 ]]; then
+  sed -i'' -e "1s/^/$TRIMMED \/ /" $1
 fi
