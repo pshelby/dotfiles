@@ -2,7 +2,7 @@
 
 function copy_files() {
 	rsync -ahnv --no-perms \
-    --exclude-from "copy-excludes.txt" \
+		--exclude-from "copy-excludes.txt" \
 		. ~;
 	source ~/.zshrc;
 }

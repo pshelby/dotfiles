@@ -1,6 +1,6 @@
 [init]
 
-  defaultBranch = main
+	defaultBranch = main
 	templatedir = ~/.git-templates
 
 [alias]
@@ -91,7 +91,7 @@
 
 [core]
 
-  pager = less -F -X
+	pager = less -F -X
 
 	# Use custom `.gitignore` and `.gitattributes`
 	excludesfile = ~/.gitignore
