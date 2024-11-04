@@ -1,3 +1,8 @@
+[init]
+
+	defaultBranch = main
+	templatedir = ~/.git-templates
+
 [alias]
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
@@ -86,6 +91,8 @@
 
 [core]
 
+	pager = less -F -X
+
 	# Use custom `.gitignore` and `.gitattributes`
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
@@ -163,6 +170,10 @@
 	default = simple
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
+
+[pull]
+
+	rebase = false
 
 # URL shorthands
 
