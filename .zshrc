@@ -7,12 +7,18 @@
 export PATH="$PATH:$HOME/.local/bin"
 
 ### Homebrew
-export HOMEBREW_PREFIX=$(brew --prefix)
-export PATH=$HOMEBREW_PREFIX/opt/python/libexec/bin:$HOMEBREW_PREFIX/sbin:$PATH
+export HOMEBREW_PREFIX=$(/opt/homebrew/bin/brew --prefix)
+export PATH=$HOMEBREW_PREFIX/opt/python/libexec/bin:$HOMEBREW_PREFIX/sbin:$HOMEBREW_PREFIX/bin:$PATH
+
+### OrbStack (Docker)
+export PATH=/Applications/OrbStack.app/Contents/MacOS/xbin:$PATH
 
 ### Rust
 export PATH=$HOME/.cargo/bin:$PATH
 export RUSTC_WRAPPER=sccache
+
+### Avante.nvim
+export OPENAI_API_KEY=$(cat ~/.openai-api-key)
 
 ### Oh My Zsh
 # https://github.com/ohmyzsh/ohmyzsh/wiki/Settings
@@ -22,10 +28,10 @@ export ZSH="$HOME/.oh-my-zsh"
 # Uncomment the following line to automatically update without prompting.
 DISABLE_UPDATE_PROMPT="true"
 
-# Enable command auto-correction.
+# Uncomment the following line to enable command auto-correction.
 #ENABLE_CORRECTION="true"
 
-# Display red dots whilst waiting for completion.
+# Uncomment the following line to display red dots whilst waiting for completion.
 #COMPLETION_WAITING_DOTS="true"
 
 # Start tmux on terminal start
@@ -38,13 +44,17 @@ ZSH_TMUX_AUTOSTART=true
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  jira
   tmux
   vi-mode
+  # zsh-autosuggestions
   zsh-syntax-highlighting
 )
 
-# Init plugins
-.zsh-plugins.sh
+# Init plugins if exists
+if [ -f ~/.zsh-plugins.sh ]; then
+  ~/.zsh-plugins.sh
+fi
 
 # Activate!
 source $ZSH/oh-my-zsh.sh
@@ -60,12 +70,22 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 alias fd="fd --ignore-case --hidden --no-ignore"
 alias grpo="git remote prune origin"
-alias ls=exa
-alias lst="exa -alT -I .git"
-alias rg="rg -i --hidden -g \!.git"
+alias ls=eza
+alias lst="eza -alT -I .git"
+alias rg="rg --follow -i --hidden -g \!.git"
 alias vim=nvim
 
 # Functions
+av() {
+  AWS_VAULT_PROFILE=${AV_ENV:-"main-ro"}
+  aws-vault exec $AWS_VAULT_PROFILE -- $@
+}
+
+avl() {
+  AWS_VAULT_PROFILE=${AV_ENV:-"main-ro"}
+  aws-vault login $AWS_VAULT_PROFILE
+}
+
 brew-recursive-uninstall() {
   FORMULAE_TO_DELETE=$1
 
@@ -80,6 +100,14 @@ brew-recursive-uninstall() {
 
   rm brew-leaves-*.txt
   unset FORMULAE_TO_DELETE
+}
+
+ecr-login() {
+  REGION=${1:-"us-east-1"}
+  ACCOUNT_ID=$(AV_ENV=main av aws sts get-caller-identity | jq -r '.Account')
+  LOGIN_PSWD=$(AV_ENV=main av aws ecr get-login-password --region $REGION)
+  echo $LOGIN_PSWD | AV_ENV=main av docker login --username AWS --password-stdin ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com
+  unset ACCOUNT_ID LOGIN_PSWD REGION
 }
 
 gls() {
@@ -98,8 +126,29 @@ random-pswd() {
   LENGTH="${1:-24}"
   RANDOM_PSWD=$(head /dev/urandom | LC_ALL=C tr -d -c A-Za-z0-9 | head -c$LENGTH)
   echo $RANDOM_PSWD
-  echo "https://magic-wormhole.readthedocs.io/en/latest/"
-  wormhole send --text $RANDOM_PSWD
+  if command -v wormhole &> /dev/null; then
+    echo "Sending password via magic-wormhole"
+    echo "https://magic-wormhole.readthedocs.io/en/latest/"
+    wormhole send --text $RANDOM_PSWD
+  fi
+}
+
+tf() {
+  AV_ENV=${AV_ENV:-"main"} av terraform $@
+}
+
+tfa() {
+  tf apply $@
+}
+
+tfi() {
+  tf init $@
+}
+
+tfp() {
+  # Pattern to exclude for slimmer output
+  # ' Read|Refreshing state|^(Acquiring|Releasing|Terraform has compared)'
+  tf plan $@
 }
 
 vault-list() {
@@ -110,4 +159,4 @@ vault-list() {
 # Configuration: https://starship.rs/config/
 eval "$(starship init zsh)"
 
-### Current company-specific items
+### Current company-specific items can be added below
