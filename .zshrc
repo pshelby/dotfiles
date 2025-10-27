@@ -10,15 +10,18 @@ export PATH="$PATH:$HOME/.local/bin"
 export HOMEBREW_PREFIX=$(/opt/homebrew/bin/brew --prefix)
 export PATH=$HOMEBREW_PREFIX/opt/python/libexec/bin:$HOMEBREW_PREFIX/sbin:$HOMEBREW_PREFIX/bin:$PATH
 
-### OrbStack (Docker)
-export PATH=/Applications/OrbStack.app/Contents/MacOS/xbin:$PATH
-
 ### Rust
 export PATH=$HOME/.cargo/bin:$PATH
 export RUSTC_WRAPPER=sccache
 
-### Avante.nvim
-export OPENAI_API_KEY=$(cat ~/.openai-api-key)
+### Neovim AI plugins
+# Created at https://console.anthropic.com/settings/keys (Tatari Google login)
+export AVANTE_ANTHROPIC_API_KEY=$(cat ~/.anthropic-api-key)
+export AVANTE_GITHUB_API_KEY=$(cat ~/.github-token-avante)
+# Created at https://platform.openai.com/settings/organization/api-keys (personal login)
+export AVANTE_OPENAI_API_KEY=$(cat ~/.openai-api-key)
+# Created at kagi.com
+export KAGI_API_KEY=$(cat ~/.kagi-api-key)
 
 ### Oh My Zsh
 # https://github.com/ohmyzsh/ohmyzsh/wiki/Settings
@@ -77,13 +80,11 @@ alias vim=nvim
 
 # Functions
 av() {
-  AWS_VAULT_PROFILE=${AV_ENV:-"main-ro"}
-  aws-vault exec $AWS_VAULT_PROFILE -- $@
+  aws-vault exec ${AV_ENV:-"main"} -- $@
 }
 
 avl() {
-  AWS_VAULT_PROFILE=${AV_ENV:-"main-ro"}
-  aws-vault login $AWS_VAULT_PROFILE
+  aws-vault login ${AV_ENV:-"main"}
 }
 
 brew-recursive-uninstall() {
@@ -100,14 +101,6 @@ brew-recursive-uninstall() {
 
   rm brew-leaves-*.txt
   unset FORMULAE_TO_DELETE
-}
-
-ecr-login() {
-  REGION=${1:-"us-east-1"}
-  ACCOUNT_ID=$(AV_ENV=main av aws sts get-caller-identity | jq -r '.Account')
-  LOGIN_PSWD=$(AV_ENV=main av aws ecr get-login-password --region $REGION)
-  echo $LOGIN_PSWD | AV_ENV=main av docker login --username AWS --password-stdin ${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com
-  unset ACCOUNT_ID LOGIN_PSWD REGION
 }
 
 gls() {
@@ -149,10 +142,6 @@ tfp() {
   # Pattern to exclude for slimmer output
   # ' Read|Refreshing state|^(Acquiring|Releasing|Terraform has compared)'
   tf plan $@
-}
-
-vault-list() {
-  ~/.vault-list.sh $@
 }
 
 # Starship prompt
